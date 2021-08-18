@@ -14,4 +14,4 @@ tar -C /usr/local -zxvf go1.17.linux-amd64.tar.gz
 
 setEnv GOROOT=/usr/local/go
 setEnv GOPROXY=https://goproxy.io,direct
-setEnv PATH=$PATH:$GOROOT/bin
+setEnv 'PATH=$PATH:$GOROOT/bin'
