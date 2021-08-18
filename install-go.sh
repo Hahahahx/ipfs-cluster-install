@@ -6,16 +6,18 @@ if ! [ -n "$1" ]; then
     # 检查是否安装了，安装了就退出
     detectCommand go
     ifExit $? 1
+    gopath=/.go/workspace/
+    mkdir -p /.go/workspace/
+else
+    gopath=$1
 fi
 
 rm -rf /usr/local/go/
 
 tar -C /usr/local -zxvf go1.17.linux-amd64.tar.gz
 
-mkdir -p /.go/path/
-
 setEnv GOROOT=/usr/local/go
-setEnv GOPATH=/.go/path/
+setEnv GOPATH=$1
 setEnv GOPROXY=https://goproxy.io,direct
 setEnv 'PATH=$PATH:$GOROOT/bin:$GOPATH/bin'
 

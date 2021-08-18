@@ -40,10 +40,10 @@ setEnv CLUSTER_SECRET=$uuid
 
 ipfs-cluster-service init
 
-echo "CLUSTER_SECRET=$uuid" >/etc/sysconfig/ipfs-clusterd
 
-rm -rf /etc/systemd/system/ipfs-cluster.service
-cp ipfs-cluster.service /etc/systemd/system/ipfs-cluster.service
+#配置启动时需要的环境参数
+echo "CLUSTER_SECRET=$uuid" >/etc/sysconfig/ipfs-clusterd
+cat ipfs-cluster.service >/etc/systemd/system/ipfs-cluster.service
 
 commandPath=$(whereis $commands | sed -e s/$commands://g)
 # 判断当前节点是否是主节点

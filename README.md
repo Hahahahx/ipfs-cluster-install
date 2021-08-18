@@ -7,10 +7,11 @@
 ```
 
 
-如果没有安装go
+如果没有安装go，第一个参数是可选的，它可以让你在安装时指定工作目录，如果没有指定则在根目录下
+创建/.go/workspace，go get与go install都会将包存在该工作目录下
 
 ```
-    install-go.sh   
+    install-go.sh  [gopathdir]
 ```
 
 安装ipfs前必须先生成swarm.key 
@@ -23,17 +24,17 @@
 ```
 
 安装ipfs可以设置第一个参数，第一个参数为ipfs项目挂载点，
-这个是可选的，如果没有的话就会挂载到根目录下
+这个是可选的，如果没有的话就会挂载到根目录下，创建/ipfs/.ipfs/，ipfs所有的数据都存在该目录下
 
 ```
-    install-ipfs.sh [/dev/sdb]
+    mount /dev/sdb /ipfs-data
+    install-ipfs.sh /ipfs-data/.ipfs/
 ```
-则等价于
+如果
 ```
-    mount /dev/sdb /ipfs
     install-ipfs.sh
 ```
-挂载目录始终为/ipfs/.ipfs
+则挂载目录为/ipfs/.ipfs
 
 
 安装ipfs-cluster前确保必须先装好ipfs，同时生成cluster.key
