@@ -4,8 +4,9 @@
 
 if ! [ -e swarm.key ]; then
     echo "请在目录下先生成swarm.key，确保集群后续的节点都会用到这个密钥，如果你不知道该怎么做，可以执行下列指令..."
-    echo "go get -u github.com/Kubuxu/go-ipfs-swarm-key-gen/ipfs-swarm-key-gen"
-    echo "ipfs-swarm-key-gen > swarm.key"
+    echo "echo \"/key/swarm/psk/1.0.0/\" > swarm.key"
+    echo "echo \"/base16/\" >> swarm.key"
+    echo "od -vN 32 -An -tx1 /dev/urandom | tr -d ' \n' >> swarm.key"
     exit 1
 fi
 

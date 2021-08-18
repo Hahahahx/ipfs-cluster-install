@@ -16,8 +16,9 @@
 安装ipfs前必须先生成swarm.key 
 
 ```
-    go get -u github.com/Kubuxu/go-ipfs-swarm-key-gen/ipfs-swarm-key-gen
-    ipfs-swarm-key-gen > swarm.key
+    echo "/key/swarm/psk/1.0.0/" > swarm.key
+    echo "/base16/" >> swarm.key
+    od -vN 32 -An -tx1 /dev/urandom | tr -d ' \n' >> swarm.key
 
 ```
 
