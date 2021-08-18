@@ -2,6 +2,7 @@
 
 if ! [ -e cluster.key ]; then
     echo "请在目录下先生成cluster.key，确保集群后续的节点都会用到这个密钥，如果你不知道该怎么做，可以执行下列指令..."
+    echo
     echo "od -vN 32 -An -tx1 /dev/urandom | tr -d ' \n' > cluster.key"
     exit 1
 fi
@@ -50,11 +51,11 @@ include $MasterNode $(getIp)
 if [ $? -eq 0 ]; then
     echo "启动节点ipfs-cluster-service，引导主节点$MasterNode"
 
-    sed -i "7c ExecStart=$commandPath daemon --bootstrap $MasterNode" /etc/systemd/system/ipfs-cluster.service
+    sed -i "8c ExecStart=$commandPath daemon --bootstrap $MasterNode" /etc/systemd/system/ipfs-cluster.service
     # ipfs-cluster-service daemon --bootstrap '$MasterNode'
 else
     echo "启动主节点ipfs-cluster-service，$MasterNode"
-    sed -i "7c ExecStart=$commandPath daemon" /etc/systemd/system/ipfs-cluster.service
+    sed -i "8c ExecStart=$commandPath daemon" /etc/systemd/system/ipfs-cluster.service
     # ipfs-cluster-service daemon
 fi
 
