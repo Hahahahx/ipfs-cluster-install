@@ -6,9 +6,10 @@ if ! [ -n "$1" ]; then
     # 检查是否安装了，安装了就退出
     detectCommand go
     ifExit $? 1
+    createDir /.go/workspace/
     gopath=/.go/workspace/
-    mkdir -p /.go/workspace/
 else
+    createDir $1
     gopath=$1
 fi
 

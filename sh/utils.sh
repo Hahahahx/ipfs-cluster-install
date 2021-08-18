@@ -47,3 +47,9 @@ function include() {
         return 0
     fi
 }
+
+function createDir() {
+    if ! [ -d $1 ]; then
+        mkdir -p $1
+    fi
+}

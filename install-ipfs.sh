@@ -26,14 +26,10 @@ if ! [ $IPFS_PATH ]; then
 else
     # 判断是否自定义了挂载目录
     if [ -n "$1" ]; then
-        if ! [ -d $1 ]; then
-            mkdir -p $1
-        fi
+        createDir $1
         setEnv IPFS_PATH=$1
     else
-        if ! [ -d "/ipfs/.ipfs" ]; then
-            mkdir -p /ipfs/.ipfs
-        fi
+        createDir /ipfs/.ipfs
         setEnv IPFS_PATH=/ipfs/.ipfs
     fi
 
