@@ -38,6 +38,7 @@ ifExit $? 0
 uuid=$(cat cluster.key)
 setEnv CLUSTER_SECRET=$uuid
 setEnv IPFS_CLUSTER_PATH=$IPFS_PATH
+source /etc/profile
 
 ipfs-cluster-service init
 

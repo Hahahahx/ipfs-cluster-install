@@ -35,6 +35,7 @@ else
 
 fi
 
+source /etc/profile
 ipfs init
 cp swarm.key $IPFS_PATH
 
@@ -64,7 +65,7 @@ ipfs config --json Swarm.EnableAutoRelay "true"
 # 必须要加上该文件
 # systemd读取不了/etc/profile中的环境变量
 # 配置启动时需要的环境参数
-echo "IPFS_PATH=/ipfs/.ipfs" >/etc/sysconfig/ipfsd
+echo "IPFS_PATH=$1" >/etc/sysconfig/ipfsd
 echo "LIBP2P_FORCE_PENT=1" >>/etc/sysconfig/ipfsd
 
 cat ipfs.service >/etc/systemd/system/ipfs.service
