@@ -24,8 +24,8 @@ sh ./go-ipfs/install.sh
 if ! [ $IPFS_PATH ]; then
     echo "=> 已经配置了IPFS_PATH=$IPFS_PATH"
 else
+    # 判断是否自定义了挂载目录
     if [ -n "$1" ]; then
-        # 挂载磁盘目录（非必须）
         if ! [ -d $1 ]; then
             mkdir -p $1
         fi
@@ -44,14 +44,15 @@ cp swarm.key $IPFS_PATH
 
 ipfs bootstrap rm --all
 
-# 主节点不添加引导配置
+# 添加引导配置
 while read line; do
+    # 过滤当前节点
     include $line $(getIp)
     if [ $? -eq 0 ]; then
         ipfs bootstrap add $line
         echo "=> 添加引导：ipfs bootstrap add $line"
     fi
-done <bootstrap.txt
+done <bootstrap
 
 export LIBP2P_FORCE_PENT=1
 

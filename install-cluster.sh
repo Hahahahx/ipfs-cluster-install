@@ -37,12 +37,13 @@ ifExit $? 0
 
 uuid=$(cat cluster.key)
 setEnv CLUSTER_SECRET=$uuid
+setEnv IPFS_CLUSTER_PATH=$IPFS_PATH
 
 ipfs-cluster-service init
 
-
 #配置启动时需要的环境参数
 echo "CLUSTER_SECRET=$uuid" >/etc/sysconfig/ipfs-clusterd
+echo "IPFS_CLUSTER_PATH=$IPFS_PATH" >>/etc/sysconfig/ipfs-clusterd
 cat ipfs-cluster.service >/etc/systemd/system/ipfs-cluster.service
 
 commandPath=$(whereis $commands | sed -e s/$commands://g)
