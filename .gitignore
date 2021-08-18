@@ -1,0 +1,4 @@
+*.gz
+ipfs-cluster
+swarm.key
+cluster.key

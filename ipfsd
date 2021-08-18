@@ -1,0 +1,2 @@
+IPFS_PATH=/ipfs/.ipfs
+LIBP2P_FORCE_PENT=1
