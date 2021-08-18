@@ -70,8 +70,8 @@ ipfs config --json Swarm.EnableRelayHop "true"
 
 # 必须要加上该文件
 # systemd读取不了/etc/profile中的环境变量
-rm -rf /etc/sysconfig/ipfsd
-cp ipfsd /etc/sysconfig/ipfsd
+echo "IPFS_PATH=/ipfs/.ipfs" >/etc/sysconfig/ipfsd
+echo "LIBP2P_FORCE_PENT=1" >>/etc/sysconfig/ipfsd
 
 rm -rf /etc/systemd/system/ipfs.service
 cp ipfs.service /etc/systemd/system/ipfs.service
